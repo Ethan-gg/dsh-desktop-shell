@@ -286,6 +286,19 @@ dist/                          NSIS / portable / win-unpacked 构建产物
 
 ---
 
+## 下载安装包
+
+GitHub 不允许普通 Git 仓库提交超过 **100 MiB** 的单个文件，而这两个 Electron 产物各约 **106 MiB**，所以它们没有放进源码树，而是放在 release assets：
+
+- [v0.1.0 Release](https://github.com/Ethan-gg/dsh-desktop-shell/releases/tag/v0.1.0)
+- [dsh.Desktop.Setup.0.1.0.exe](https://github.com/Ethan-gg/dsh-desktop-shell/releases/download/v0.1.0/dsh.Desktop.Setup.0.1.0.exe)（NSIS 安装包）
+- [dsh-Desktop-0.1.0-portable.exe](https://github.com/Ethan-gg/dsh-desktop-shell/releases/download/v0.1.0/dsh-Desktop-0.1.0-portable.exe)（免安装版）
+- [SHA256SUMS.txt](https://github.com/Ethan-gg/dsh-desktop-shell/releases/download/v0.1.0/SHA256SUMS.txt)
+
+需要把二进制放进 Git 树时，应使用 Git LFS 或自建 artifact 存储，而不是普通提交。
+
+---
+
 ## 打包与签名
 
 ```powershell
