@@ -2,6 +2,8 @@
 
 一个很薄的 Electron 宿主：主进程负责启动/停止本地 dsh 后端、加载它带认证令牌的 Web UI、托盘生命周期和故障恢复；窗口里运行的是原封不动的 dsh Web 页面，壳不碰业务逻辑。
 
+源码仓库：<https://github.com/Ethan-gg/dsh-desktop-shell>
+
 这个目录已经包含可运行实现、31 个单元测试、5 个真实启动/安装验证脚本，以及 NSIS/portable 打包配置。实现过程中修正了原方案里几个会直接导致“打不开”的问题，评审结论见 [DESIGN.md](./DESIGN.md)。
 
 ---
