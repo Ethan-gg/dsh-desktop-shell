@@ -1,0 +1,74 @@
+{
+  "name": "dsh-desktop-shell",
+  "productName": "dsh Desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A thin, fault-tolerant Electron host for the DeepSeek Harness Web UI.",
+  "main": "src/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "test": "node --test",
+    "icons": "node scripts/generate-icons.js",
+    "smoke": "electron . --smoke-test",
+    "predist": "npm run icons",
+    "dist": "electron-builder --win nsis portable",
+    "predist:dir": "npm run icons",
+    "dist:dir": "electron-builder --win dir"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "devDependencies": {
+    "electron": "44.9.2",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.deepseek.dsh.desktop-shell",
+    "productName": "dsh Desktop",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json",
+      "README.md",
+      "DESIGN.md"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "assets/**"
+    ],
+    "npmRebuild": false,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "dsh Desktop"
+    },
+    "portable": {
+      "artifactName": "dsh-Desktop-${version}-portable.exe"
+    }
+  }
+}

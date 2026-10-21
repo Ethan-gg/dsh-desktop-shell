@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'self';">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>安全安装插件</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px;
+    background: #0d1117; color: #e6edf3;
+    font: 14px/1.7 "Segoe UI", "Microsoft YaHei UI", system-ui, sans-serif;
+  }
+  h1 { margin: 0 0 6px; font-size: 18px; font-weight: 650; }
+  .hint { margin: 0 0 18px; color: #8b949e; font-size: 12px; }
+  label { display: block; margin-bottom: 6px; color: #c9d1d9; font-size: 12px; }
+  input {
+    width: 100%; height: 38px; padding: 0 12px;
+    border: 1px solid #30363d; border-radius: 8px;
+    background: #010409; color: #e6edf3; outline: none;
+    font: 13px/1.4 Consolas, "Cascadia Mono", monospace;
+  }
+  input:focus { border-color: #58a6ff; box-shadow: 0 0 0 3px rgba(88,166,255,.12); }
+  .example { margin-top: 8px; color: #6e7681; font-size: 12px; }
+  .note {
+    margin: 18px 0 20px; padding: 10px 12px;
+    border: 1px solid #1f6feb; border-radius: 8px;
+    background: rgba(31,111,235,.08); color: #9ecbff; font-size: 12px;
+  }
+  .error { min-height: 20px; margin: 8px 0 0; color: #ff7b72; font-size: 12px; }
+  .actions { display: flex; justify-content: flex-end; gap: 8px; }
+  button {
+    height: 34px; padding: 0 16px; border-radius: 8px;
+    border: 1px solid #30363d; background: #21262d; color: #e6edf3;
+    font: 13px/1 "Segoe UI", "Microsoft YaHei UI", sans-serif; cursor: pointer;
+  }
+  button.primary { border-color: #1f6feb; background: #1f6feb; color: white; }
+  button:disabled { opacity: .55; cursor: default; }
+</style>
+</head>
+<body>
+  <h1>安全安装插件</h1>
+  <p class="hint">先在隔离的 canary profile 中安装并验证，成功后才合并到当前 profile；失败不影响当前配置。</p>
+  <label for="spec">包名或安装地址</label>
+  <input id="spec" autocomplete="off" spellcheck="false" placeholder="@scope/plugin@1.2.3" autofocus>
+  <div class="example">支持 npm 包名、本地路径、git 地址和 tarball；不接受以 “-” 开头的参数。</div>
+  <div class="note">安装期间会暂时停止本地后端。插件安装可能触发 pnpm 构建脚本，请只安装你信任的包。</div>
+  <div class="error" id="error"></div>
+  <div class="actions">
+    <button id="cancel">取消</button>
+    <button id="submit" class="primary">在 Canary 中安装</button>
+  </div>
+<script src="./install-renderer.js"></script>
+</body>
+</html>
